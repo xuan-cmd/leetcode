@@ -1,0 +1,14 @@
+涉及Students、Subjects、Examinations
+
+查询出每个学生参加每一门科目测试的次数，结果按 student_id 和 subject_name 排序。
+
+
+#Write your MySQL query statement below
+select a.student_id,a.student_name,b.subject_name,count(c.subject_name)as attended_exams 
+from Students a
+cross join Subjects b
+left join Examinations c
+on a.student_id=c.student_id
+and b.subject_name=c.subject_name
+group by a.student_id,b.subject_name
+order by student_id ,subject_name 
