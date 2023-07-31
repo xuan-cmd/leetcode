@@ -1,0 +1,38 @@
+题解1： 676ms
+select name as Customers
+from Customers
+where id not in(
+  select customerId 
+  from  Orders 
+)
+
+题解2 612ms
+select name as Customers
+from Customers a
+left join Orders b
+on a.id = b.CustomerId
+where b.CustomerId is null
+
+on是连接条件，再用where筛选a表中不符合条件的
+
+题解3 595ms
+select name as Customers
+from Customers
+where not exists (
+  select customerId 
+  from  Orders 
+  where customerId = Customers.id
+)
+用Not exists 来代替not in 
+
+题解4 359ms
+select A.Name as Customers
+from Customers A
+where not exists (
+    select 1
+    from Orders B
+    where A.Id = B.CustomerId
+)
+
+exists的作用就是判断是否存在结果，或者说判断查询子句是否有返回记录，如果子查询有一条或多条记录返回时返回 True给到父查询，否则返回 False。
+exists语句中有匹配条件，所以在判断父查询中的每行记录时，要用该父查询记录的id放进去来判断能否返回true
