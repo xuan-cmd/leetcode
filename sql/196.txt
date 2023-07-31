@@ -1,4 +1,13 @@
 表person 
+题解1
 # Write your MySQL query statement below
 delete a from Person a,Person b
 where a.email=b.email and a.id>b.id
+
+题解2
+delete from Person 
+where id not in(
+  select need.id from(
+    select min(Id) as id from Person group by Email
+  ) need 
+)
