@@ -1,0 +1,30 @@
+剑指 Offer 05. 替换空格
+
+题解1:
+class Solution(object):
+    def replaceSpace(self, s):
+        return s.replace(" ","%20")
+
+题解2：
+class Solution(object):
+    def replaceSpace(self, s):
+        ans = ""
+        for i in s:
+            if i == " ":
+                ans = ans + "%20"
+            else:
+                ans = ans + i
+        return ans
+
+题解3：
+class Solution(object):
+    def replaceSpace(self, s):
+        lst = []
+        for c in s:
+            if c == " ":
+                lst.append("%20")
+            else:
+                lst.append(c)
+        return "".join(lst)
+
+",".join('abc') 结果'a,b,c'

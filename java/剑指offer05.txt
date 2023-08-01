@@ -1,0 +1,36 @@
+替换空格
+
+题解1：
+class Solution {
+    public String replaceSpace(String s) {
+        return s.replaceAll(" ","%20");
+    }
+}
+
+题解2:
+class Solution {
+    public String replaceSpace(String s) {
+        StringBuffer sBuffer = new StringBuffer();
+        for ( int i = 0 ;i <s.length() ; i++){
+            if(s.charAt(i) == ' ')
+            sBuffer.append("%20");
+            else
+            sBuffer.append(s.charAt(i));
+        }
+        return sBuffer.toString();
+    }
+}
+
+题解3：
+class Solution {
+    public String replaceSpace(String s) {
+        StringBuilder sBuffer = new StringBuilder();
+        for ( int i = 0 ;i <s.length() ; i++){
+            if(s.charAt(i) == ' ')
+            sBuffer.append("%20");
+            else
+            sBuffer.append(s.charAt(i));
+        }
+        return sBuffer.toString();
+    }
+}
