@@ -1,0 +1,6 @@
+178. 分数排名
+
+题解1：
+select score, dense_rank()over(order by score desc) as 'rank'
+from Scores;
+
