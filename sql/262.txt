@@ -1,0 +1,16 @@
+题解1：
+# Write your MySQL query statement below
+select a.request_at as `Day`,Round(sum(if (a.status='completed',0,1))/count(a.status),2)as `Cancellation Rate`
+from Trips a
+join Users b
+on a.client_id = b.users_id
+#and b.role = "client"
+and b.banned = 'No'
+join Users c
+on a.driver_id = b.users_id
+#and c.role = "driver"
+and c.banned = 'No'
+where a.request_at between '2013-10-01' and '2013-10-03'
+group by a.request_at
+
+注意要使用Join,而不是Left join ,因为trips表里有users表没有的id
